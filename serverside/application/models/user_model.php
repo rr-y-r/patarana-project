@@ -1,0 +1,30 @@
+<?php
+
+class User_model extends CI_Model {
+
+	var $table = 'user';
+
+    function User_model(){
+		parent::__construct();
+	}
+
+	function changepassword($data){
+        return  $this->db->query("update ".$this->table." set password = '".$data->password."' where userid =".$data->userid);
+    }
+    
+    function getAll(){
+        return  $this->db->query("SELECT userid,username, password, name, level, storeid, isactive FROM user")->result_array();
+    }
+    
+    function insert($data){
+        return $this->db->insert($this->table, $data);
+    }
+    
+    function updateisactive($data){
+        return  $this->db->query("update ".$this->table." set isactive = '".$data->isactive."' where userid =".$data->userid);
+    }
+    
+    function getbyid($id){
+        return $this->db->get_where($this->table , array('userid' => $id))->result_array();
+    }
+}

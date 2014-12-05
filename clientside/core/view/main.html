@@ -1,0 +1,16 @@
+<div growl></div>
+<div ng-include src="'./core/view/navbar2.html'"></div>
+
+<div id="wrapper" >
+    <div ng-switch on="menus" id="page-wrapper">
+        <div ng-switch-when="user">
+            <div ng-include src="'./core/view/user.html'"></div>
+        </div>  
+        <div ng-switch-when="store">
+            <div ng-include src="'./core/view/store.html'"></div>
+        </div>
+        <div ng-switch-default>
+            <h1>Default</h1>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<table class="table table-condensed ">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="i in user" class="repeat-item">
+            <td>{{i.userid}}</td>
+            <td>{{i.name}}</td>
+            <td>
+                <button ng-click="userModal('setActive',i.userid)" class="btn btn-warning" type="button">{{i.isactive == 1 ? 'active' : 'nonactive'; }}</button>
+            </td>
+            <td>
+                <button  ng-click="userModal('deleteUser',i.userid)" class="btn btn-danger" type="button">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal {{uModalAct}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeUserModal()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{uModalAction}}</h4>
+            </div>
+            <div class="modal-body">
+                username : {{data.userid}}<br>
+                password : {{data.password}}<br>
+                name : {{data.name}}<br>
+                level : {{data.level}}<br>
+                status : {{data.isactive == 1 ? 'active' : 'nonactive'; }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="closeUserModal()" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="submitUserModal(data,'setActive')" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
