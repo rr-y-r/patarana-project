@@ -32,6 +32,14 @@ class Store_model extends CI_Model{
         return $data;
     }
     
+    function register($name){
+        return $this->db->insert($this->tblname,array('name'=>$name));
+    }
+    
+    function getbyname($name){
+        return $this->db->get_where($this->tblname , array('name' => $name))->result_array();
+    }
+    
     function getbyid($id){
         return $this->db->get_where($this->tblname , array('id' => $id))->result_array();
     }

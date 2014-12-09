@@ -27,4 +27,12 @@ class User_model extends CI_Model {
     function getbyid($id){
         return $this->db->get_where($this->table , array('userid' => $id))->result_array();
     }
+    
+    function register($username,$password,$name,$storeid){
+        $data = array('username'=>$username,
+                      'password'=>$password,
+                      'name'=>$name,
+                      'storeid'=>$storeid);
+        return $this->db->insert($this->table, $data);
+    }
 }
