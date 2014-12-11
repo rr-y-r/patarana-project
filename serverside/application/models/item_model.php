@@ -25,7 +25,7 @@ class Item_model extends CI_Model {
     }
 
     function get(){
-        //get shuttle
+
         $item = self::get_all();
         $data = array();
         foreach($item as $key => $val){

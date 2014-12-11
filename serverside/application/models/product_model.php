@@ -11,11 +11,28 @@ class Product_model extends CI_Model {
         return $this->db->get($this->tblname)->result_array();
     }
     
-    function getStoreId(){
-        
+    function getBindData($username){
+        return $this->db->select('userid,storeid')
+            ->from('user')
+            ->where('username',$username)
+            ->get()
+            ->result_array();
+    }
+    
+    function bindProductData($data,$userid,$storeid){
+        $bind = array('admin_id'=>$userid,
+                      'store_id'=>$storeid,
+                      'name'=>$data->name,
+                      'note'=>$data->note,
+                      'price'=>$data->price,
+                      'quantity'=>$data->quantity,
+                      'status'=>$data->status,
+                      'category_id'=>$data->category_id);
+        return $this->db->insert($this->tblname,$bind);
+        //return $this->db->where
     }
 
-    function insert($data){
+    function insert($data, $username){
         return $this->db->insert($this->tblname,$data);
     }
 

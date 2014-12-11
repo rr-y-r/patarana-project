@@ -12,9 +12,13 @@ class Product extends CI_Controller {
     }
 
     function insert(){
-        echo $this->session->userdata('username');
+        $username = $this->session->userdata('username');
         $data=json_decode(file_get_contents("php://input"));
-        echo $this->Product_model->insert($data);
+        $bindData = $this->Product_model->getBindData($username);
+        $storeId =  $bindData[0]['storeid'];
+        $userId = $bindData[0]['userid'];
+        echo $this->Product_model->bindProductData($data,$userId,$storeId);
+        //echo $this->Product_model->insert($data, $username);
     }
 
     function update(){
