@@ -103,6 +103,7 @@ define([
                 });
 
             };
+            
             $scope.edit = function(data){
                 serviceAjax.posDataToServer('store','update',data).then(function(data){
                     if(data){

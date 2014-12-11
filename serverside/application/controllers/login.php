@@ -9,7 +9,7 @@ class Login extends CI_Controller {
 	 function index(){
          $data    = json_decode(file_get_contents("php://input"));
          $dataCheck = $this->Login_model->userCheck($data->username, $data->password);
-
+         $this->session->set_userdata($data);
          echo json_encode($dataCheck);
 	 }
 

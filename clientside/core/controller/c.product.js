@@ -1,14 +1,67 @@
 define([
 
 ], function(){
-    function CtrluserHome($scope,serviceAjax,growl){
-        $scope.nav=['store','product'];
-        $scope.menus=$scope.nav[0];
-        $scope.selectNav = function (page) {
-            $scope.menus = page;
-        }     
+    function Ctrlproduct($scope,serviceAjax,$location,localStorageService,growl,$timeout){
+        /*
+        function refresh_files(){
+            $.get('./upload/files/')
+            .success(function (data){
+                $('#files').html(data);
+            });
+        }
+        
+        $scope.uploadFile = function(data){
+
+            serviceAjax.posDataToServer('product','doUpload',data).then(function(data){
+
+                    console.log(data);
+                    growl.addSuccessMessage('Berhasil Di upload',{ttl: 2000});
+
+                $.ajaxFileUpload({
+                    url 			:'../upload/upload_file/', 
+                    secureuri		:false,
+                    fileElementId	:'productImg',
+                    dataType		: 'json',
+                    data			: {
+                        'title'				: $('#title').val()
+                    },
+                    success	: function (data, status){
+                        if(data.status != 'error'){
+                            $('#pimg').html('<p>Reloading files...</p>');
+                            refresh_files();
+                            $('#title').val('');
+                        }
+                        alert(data.msg);
+                    }
+                });
+                return false;
+
+            });
+            
+            
+        }
+        
+
+        
+        $scope.updateProduct = function(){
+            $.get('./upload/files/')
+            .success(function (data){
+                $('#files').html(data);
+            });
+        }
         
         
+        $scope.level = localStorageService.get('user');
+
+        $scope.loaddata = serviceAjax.getDataFromServer('product','get').then(function(data){
+            if (data) {
+                $scope.product = data;
+                $scope.$apply();
+            }
+        });
+
+        $scope.loaddata;
+        */
         $scope.productModal = function(action){
             if(action=='add'){
                 $scope.modaloption = 'show';
@@ -37,7 +90,7 @@ define([
             $scope.modaloption = 'hide';
             $scope.data = '';
         }
-
+        
         $scope.save = function(data,action){
             $scope.submit(data);
         };
@@ -51,7 +104,7 @@ define([
                 }
             });
         };
-
+        
         $scope.delete = function(id){
             serviceAjax.getDataFromServer('product','delete',+id).then(function(data){
                 if(data.length > 0){
@@ -77,11 +130,10 @@ define([
                 }
             });
         }
-
-    
+        
     }
-    // set to global
-       window.CtrluserHome = CtrluserHome;
+    
+    window.Ctrlproduct = Ctrlproduct;
 
-       return CtrluserHome;
-});
+    return Ctrlproduct;
+}); 
