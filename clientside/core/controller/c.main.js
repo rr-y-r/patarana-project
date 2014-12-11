@@ -3,11 +3,17 @@ define([
 ], function(){
     function Ctrlmain($scope,serviceAjax,growl){
         
-        $scope.nav=['user','store'];
+        var paging;
+        
+        $scope.nav=['user','store','categories'];
         $scope.menus=$scope.nav[0];
         $scope.selectNav = function (page) {
             $scope.menus = page;
+            paging = page;
+            console.log("paging = "+paging);
         }
+        
+        
         
         function getStoreData(){
             serviceAjax.getDataFromServer('store','get').then(function(data){
@@ -17,6 +23,16 @@ define([
                 }
             });
         }
+        
+        function updateData(section){
+            serviceAjax.getDataFromServer(section,'get').then(function(data){
+                if (data) {
+                    $scope.section = data;
+                }
+            });
+        }
+        
+        
         
         //store function
         $scope.loadStoreData = serviceAjax.getDataFromServer('store','get')
@@ -36,11 +52,19 @@ define([
             })
         }
         
+        $scope.create = function(data,section){
+            serviceAjax.posDataToServer(section,'insert',data).then(function(data){
+                if(data){
+                    //add success action
+                    getStoreData();
+                }
+            })
+        }
+        
         $scope.deleteStore = function(id){
             serviceAjax.getDataFromServer('store','delete',+id).then(function(data){
                 if(data.length > 0){
                     console.log('log isinfunction');
-                    
                     growl.addSuccessMessage('store Berhasil Di Delete!',{ttl: 2000});
                     getStoreData();
                 }
@@ -48,11 +72,38 @@ define([
 
         }
         
-        $scope.modalStore = function(action,id){
+        $scope.modalApps = function(action,id,section){
+            paging = section;
+            console.log(paging);
             if(action=='create'){
                 $scope.modaloption = 'show';
                 $scope.action = action;
-            }else if(action =='update'){
+                
+            }
+            switch(paging){
+                    case 'store':
+                        if(action =='update'){
+                            serviceAjax.getDataFromServer('store','getbyid',+id).then(function(data){
+                                if (data) {
+                                    $scope.modaloption = 'show';
+                                    $scope.action = action;
+                                    $scope.data = data[0];
+                                } else {
+                                    $scope.modaloption = 'show';
+                                    $scope.action = action;
+                                }
+                            });
+                        };
+                        break;
+                    case 'category':    
+                        if(action=='create'){
+                            $scope.modaloption = 'show';
+                            $scope.action = action;
+                        };
+                    break;
+            }
+            /*
+            else if(action =='update'){
                 serviceAjax.getDataFromServer('store','getbyid',+id).then(function(data){
                         if (data) {
                             $scope.modaloption = 'show';
@@ -63,22 +114,22 @@ define([
                             $scope.action = action;
                         }
                 });
-            }
+            }*/
         }
         
         $scope.update = function(data){
-            serviceAjax.posDataToServer('store','update',data).then(function(data){
+            serviceAjax.posDataToServer(paging,'update',data).then(function(data){
                 if(data){
                     /*close modal*/
                     getStoreData();
                     $scope.closeModal();
                     /*tamplikan list*/
-                    growl.addSuccessMessage('store Berhasil Di Edit!',{ttl: 2000});
+                    growl.addSuccessMessage(paging + ' Berhasil Di Edit!',{ttl: 2000});
                 }
             });
         }
         
-        $scope.save = function(data,action){
+        $scope.save = function(data,action,section){
             if(action == 'create') $scope.createStore(data); else $scope.update(data);
         };
         
@@ -162,7 +213,9 @@ define([
             getUserData();
         }
         
-        };
+        //end of user function
+        
+    };
 
     
     
