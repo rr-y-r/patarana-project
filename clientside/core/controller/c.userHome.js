@@ -2,12 +2,25 @@ define([
 
 ], function(){
     function CtrluserHome($scope,serviceAjax,growl){
-        $scope.nav=['store','product'];
+        $scope.nav=['product'];
         $scope.menus=$scope.nav[0];
         $scope.selectNav = function (page) {
             $scope.menus = page;
-        }     
+        }
         
+        function getProductData(){
+            serviceAjax.getDataFromServer('product','getbinded').then(function(data){
+                $scope.product = data;
+            });
+        };
+        
+        $scope.loadProductData = serviceAjax.getDataFromServer('product','getbinded')
+        .then(function(data){
+            if (data) {
+                $scope.product = data;
+
+            }
+        });
         
         $scope.productModal = function(action){
             if(action=='add'){
@@ -21,7 +34,6 @@ define([
                         $scope.data = data[0];
                         $scope.$apply();
                     } else {
-
                         serviceAjax.getDataFromServer('product','get').then(function(data){
                             if (data) {
                                 $scope.product = data['data'];

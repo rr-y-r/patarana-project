@@ -3,11 +3,14 @@
 
 <div id="wrapper" >
     <div ng-switch on="menus" id="page-wrapper">
-        <div ng-switch-when="user">
+        <div ng-switch-when="Manage User">
             <div ng-include src="'./core/view/user.html'"></div>
         </div>  
-        <div ng-switch-when="store">
+        <div ng-switch-when="Manage Store">
             <div ng-include src="'./core/view/store.html'"></div>
+        </div>
+        <div ng-switch-when="Manage Category">
+            <div ng-include src="'./core/view/category.html'"></div>
         </div>
         <div ng-switch-default>
             <h1>Default</h1>

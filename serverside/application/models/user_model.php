@@ -20,6 +20,18 @@ class User_model extends CI_Model {
         return $this->db->insert($this->table, $data);
     }
     
+    function delete($data){
+        return $this->db->delete($this->table,array('userid'=>$data->userid));
+    }
+    
+    function getBindData($username){
+        return $this->db->select('storeid')
+            ->from('user')
+            ->where('username',$username)
+            ->get()
+            ->result();
+    }
+    
     function updateisactive($data){
         return  $this->db->query("update ".$this->table." set isactive = '".$data->isactive."' where userid =".$data->userid);
     }

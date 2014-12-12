@@ -3,7 +3,7 @@ define([
 ], function(){
     function Ctrlmain($scope,serviceAjax,growl){
         
-        $scope.nav=['user','store'];
+        $scope.nav=['Manage User','Manage Store','Manage Category'];
         $scope.menus=$scope.nav[0];
         $scope.selectNav = function (page) {
             $scope.menus = page;
@@ -13,7 +13,6 @@ define([
             serviceAjax.getDataFromServer('store','get').then(function(data){
                 if (data) {
                     $scope.store = data;
-                    
                 }
             });
         }
@@ -119,7 +118,7 @@ define([
                     }
                 });
             }else if(action =='deleteUser'){
-                serviceAjax.getDataFromServer('user','getbyid',+id).then(function(data){
+                serviceAjax.getDataFromServer('user','delete',+id).then(function(data){
                     if (data) {
                         $scope.uModalAct = 'show';
                         $scope.uModalAction = action;
@@ -132,7 +131,12 @@ define([
         }
         
         $scope.deleteUser = function(data){
-            
+            serviceAjax.getDataFromServer('user','delete',+data).then(function(data){
+                if(data){
+                    growl.addSuccessMessage('user Berhasil Di Delete!',{ttl: 2000});
+                    getUserData();
+                }
+            });
         }
         
         $scope.setActive = function(data){

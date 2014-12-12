@@ -27,6 +27,11 @@ class User extends CI_Controller {
         echo json_encode($user);
     }
     
+    function delete(){
+        $data=json_decode(file_get_contents("php://input"));
+        echo $this->User_model->delete($data);
+    }
+    
     public function getbyid($id){
         echo json_encode($this->User_model->getbyid($id));
     }

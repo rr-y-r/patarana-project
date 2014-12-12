@@ -34,6 +34,14 @@ class Product extends CI_Controller {
         $Product = $this->Product_model->getAll();
         echo json_encode($Product);
     }
+    
+    public function getbinded(){
+        $username = $this->session->userdata('username');
+        $store_id  = $this->Product_model->getBindedStore($username);
+        $storeData = $store_id[0]['storeid'];
+        $data = $this->Product_model->getProductByStore($storeData);
+        echo json_encode($data);
+    }
 
     public function getbyid($id){
         echo json_encode($this->Product_model->getbyid($id));

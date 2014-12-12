@@ -64,6 +64,18 @@ class Product_model extends CI_Model {
     function getbyid($id){
         return $this->db->get_where($this->tblname , array('id' => $id))->result_array();
     }
+    
+    function getBindedStore($username){
+        return $this->db->select('storeid')
+            ->from('user')
+            ->where('username',$username)
+            ->get()
+            ->result_array();
+    }
+    
+    function getProductByStore($storeid){
+        return $this->db->get_where($this->tblname , array('store_id' => $storeid))->result_array();
+    }
 
     function insert_file($filename, $title){
         $data = array(

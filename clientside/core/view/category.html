@@ -1,0 +1,41 @@
+<button type="submit" ng-click="modalCategory('create',i.id)" class="btn btn-success">Create New category</button>
+<table class="table table-condensed ">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="i in category" class="repeat-item">
+            <td>category {{i.id}}</td>
+            <td>category {{i.name}}</td>
+            <td>category {{i.note}}</td>
+            <td>
+                <button  ng-click="deleteCategory(i.id)" class="btn btn-info" type="button">Delete</button>
+            </td>
+            <td>
+                <button  ng-click="modalCategory('update',i.id)" class="btn btn-info" type="button">update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal {{modaloption}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{action}}</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" ng-model="data.name" />
+                <input type="hidden" class="span3"  ng-model="data.name" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="closeModal()" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="saveCategory(data,action)" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
