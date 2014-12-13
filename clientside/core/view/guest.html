@@ -1,0 +1,149 @@
+<div ng-model="guest">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost/shop_ver-a/clientside/index.html#!/guest">Patarana</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- /.navbar-collapse -->
+            <ul class="nav navbar-top-links navbar-right">
+                <a class="btn btn-success" href="http://localhost/shop_ver-a/clientside/index.html#!/login">Login here</a>
+            </ul>
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Selamat Datang Di Patarana.com</h1>
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Latest Item</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+                <div class="col-md-3 col-sm-6 hero-feature repeat-item"  ng-repeat="i in product">
+                <div class="thumbnail">
+                    <img src="./core/view/assets/3.jpg" alt="">
+                    <div class="caption">
+                        <h3>{{i.name}}l</h3>
+                        <p>{{i.note}}</p>
+                        <p>{{i.store_id}}</p>
+                        <p>
+                            <button type="submit" ng-click="modalStore(i.store_id)" class="btn btn-success">Lihat barang</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+        
+        <div class="modal {{modaloption}}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal()" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">{{action}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src='./core/view/assets/0.jpg' class="img-thumbnail" style="width: 600px;height: 500px;">
+                                        <div class="carousel-caption">
+                                            Arts by Rynaldo
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src='./core/view/assets/1.jpg' class="img-thumbnail" style="width: 600px;height: 500px;">
+                                        <div class="carousel-caption">
+                                            Arts by Rynaldo
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src='./core/view/assets/2.jpg' class="img-thumbnail" style="width: 600px;height: 500px;">
+                                        <div class="carousel-caption">
+                                            Arts by Rynaldo
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src='./core/view/assets/3.jpg' class="img-thumbnail" style="width: 600px;height: 500px;">
+                                        <div class="carousel-caption">
+                                            Arts by Rynaldo
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img src='./core/view/assets/4.jpg' class="img-thumbnail" style="width: 600px;height: 500px;">
+                                        <div class="carousel-caption">
+                                            Arts by Rynaldo
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            Nama Toko : {{data.name}}<br>
+                            HP : {{data.phone}}<br>
+                            alamat : {{data.address}}<br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="closeModal()" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Patarana, Rynaldo 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>

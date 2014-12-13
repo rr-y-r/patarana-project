@@ -29,13 +29,13 @@
     </thead>
     <tbody>
         <tr ng-repeat="i in product" class="repeat-item">
-            <td>product {{i.id}}</td>
-            <td>product {{i.name}}</td>
-            <td>product {{i.category_id}}</td>
-            <td>product {{i.note}}</td>
-            <td>product {{i.quantity}}</td>
-            <td>product {{i.price}}</td>
-            <td>product {{i.status}}</td>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.category_id}}</td>
+            <td>{{i.note}}</td>
+            <td>{{i.quantity}}</td>
+            <td>{{i.price}}</td>
+            <td>{{i.status}}</td>
             <td>
                 <button  ng-click="deleteProduct(i.id)" class="btn btn-info" type="button">Delete</button>
             </td>
@@ -80,7 +80,7 @@
                             <label>status</label>
                             <input type="text" class="form-control" name="status" ng-model="data.status">
                         </div>
-                        <button type="submit" ng-click="save(data,add)" class="btn btn-primary">submit</button>
+                        <button type="submit" ng-click="saveProduct(data,add)" class="btn btn-primary">submit</button>
                      </form>
                 </div>
             <div class="modal-footer">

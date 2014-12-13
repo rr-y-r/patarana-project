@@ -34,7 +34,7 @@ define([
                         $scope.data = data[0];
                         $scope.$apply();
                     } else {
-                        serviceAjax.getDataFromServer('product','get').then(function(data){
+                        serviceAjax.getDataFromServer('product','getbinded').then(function(data){
                             if (data) {
                                 $scope.product = data['data'];
                             }
@@ -50,11 +50,11 @@ define([
             $scope.data = '';
         }
 
-        $scope.save = function(data,action){
-            $scope.submit(data);
+        $scope.saveProduct = function(data,action){
+            $scope.submitProduct(data);
         };
 
-        $scope.submit = function(data){
+        $scope.submitProduct = function(data){
             serviceAjax.posDataToServer('product','insert',data).then(function(data){
                 if(data){
                     console.log(data);
@@ -64,12 +64,12 @@ define([
             });
         };
 
-        $scope.delete = function(id){
+        $scope.deleteProduct = function(id){
             serviceAjax.getDataFromServer('product','delete',+id).then(function(data){
                 if(data.length > 0){
                     console.log('log isinfunction');
                     growl.addSuccessMessage('product Berhasil Di Delete!',{ttl: 2000});
-                    serviceAjax.getDataFromServer('product','get')
+                    serviceAjax.getDataFromServer('product','getbinded')
                     .then(function(data){
                         if (data) {
                             $scope.product = data;
@@ -80,7 +80,7 @@ define([
             });
 
         };
-        $scope.edit = function(data){
+        $scope.editProduct = function(data){
             serviceAjax.posDataToServer('product','update',data).then(function(data){
                 if(data){
                     $scope.closeModal();
