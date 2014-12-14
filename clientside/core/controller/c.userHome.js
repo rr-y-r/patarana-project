@@ -89,9 +89,12 @@ define([
                 }
             });
         }
-
-    
+        
+         //upload file js
+        
     }
+        
+       
     // set to global
        window.CtrluserHome = CtrluserHome;
 

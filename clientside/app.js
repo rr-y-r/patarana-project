@@ -1,6 +1,6 @@
 define([
 
-], function () {
+], function () { 
     var app = angular.module("app", ['ngRoute','ngAnimate','LocalStorageModule','angular-growl']);
     app.config(['$routeProvider','$locationProvider','$httpProvider', function($routeProvider,$locationProvider,$httpProvider){
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
